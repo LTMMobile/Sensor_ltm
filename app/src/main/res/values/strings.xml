@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, Sensor_ltmActivity!</string>
+    <string name="app_name">Sensor_ltm</string>
+    <string name="timestamp">Timestamp</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="sensorx">SensorX</string>
+    <string name="sensory">SensorY</string>
+    <string name="sensorz">SensorZ</string>
+
+</resources>
