@@ -38,7 +38,11 @@ public class Sensor_ltmActivity extends Activity  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        _mSensorManager = (SensorManager)getSystemService( SENSOR_SERVICE );
+
+		// 1.
+		_mSensorManager = (SensorManager)getSystemService( SENSOR_SERVICE );
+
+		// 2.
         _mAccelerometer = _mSensorManager.getDefaultSensor( Sensor.TYPE_ACCELEROMETER );
         //_mPressure = _mSensorManager.getDefaultSensor( Sensor.TYPE_PRESSURE );
         //mMagneticField = mSensorManager.getDefaultSensor( Sensor.TYPE_MAGNETIC_FIELD );
@@ -83,7 +87,7 @@ public class Sensor_ltmActivity extends Activity  {
     	_mSensorManager.unregisterListener(_accelero_event);
         _mSensorManager.unregisterListener(_orientation_event);
         _mSensorManager.unregisterListener(_proximity_event);
-        _mSensorManager.unregisterListener(this._light_event);
+        _mSensorManager.unregisterListener(_light_event);
         super.onStop();
     }
     
@@ -95,7 +99,7 @@ public class Sensor_ltmActivity extends Activity  {
 
 		@Override
 		public void onSensorChanged(SensorEvent event) {
-			Log.v("ltm", "Lux = " + new Float(event.values[0]).toString());
+			//Log.v("ltm", "Lux = " + new Float(event.values[0]).toString());
 		}
     }
     
@@ -161,6 +165,7 @@ public class Sensor_ltmActivity extends Activity  {
 			mAccuracy.setText( new Integer(accuracy).toString() );
 		}
 
+		//comment
 		@Override
 		public void onSensorChanged(SensorEvent event) {
 			if ( event.sensor.getType() == Sensor.TYPE_ORIENTATION ){		
