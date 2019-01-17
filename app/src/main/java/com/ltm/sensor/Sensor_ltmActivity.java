@@ -14,6 +14,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class Sensor_ltmActivity extends Activity  {
+
 	private SensorManager _mSensorManager;
 	private Sensor _mAccelerometer;
 	private Sensor _mOrientation;
