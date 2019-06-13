@@ -50,7 +50,8 @@ public class Sensor_ltmActivity extends Activity  {
         _mOrientation = _mSensorManager.getDefaultSensor( Sensor.TYPE_ORIENTATION );
         _mProximity = _mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         _mLight = _mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-        
+
+        // lister les sensors disponibles dans votre device
         List<Sensor> sensors = _mSensorManager.getSensorList( Sensor.TYPE_ALL);  
         for( int t=0; t<sensors.size(); t++ ){
         		Log.v("ltm", "Nom : " + sensors.get(t).getName() + " -> Vendor : " +  sensors.get(t).getVendor() );       	
@@ -81,22 +82,21 @@ public class Sensor_ltmActivity extends Activity  {
         _mSensorManager.registerListener(_accelero_event, _mAccelerometer, SensorManager.SENSOR_DELAY_UI);
         _mSensorManager.registerListener(_orientation_event, _mOrientation, SensorManager.SENSOR_DELAY_NORMAL);
         _mSensorManager.registerListener(_proximity_event, _mProximity, SensorManager.SENSOR_DELAY_NORMAL);
-        _mSensorManager.registerListener(this._light_event, this._mLight, SensorManager.SENSOR_DELAY_FASTEST);
+        _mSensorManager.registerListener(this._light_event, _mLight, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
     protected void onStop() {
+        super.onStop();
     	_mSensorManager.unregisterListener(_accelero_event);
         _mSensorManager.unregisterListener(_orientation_event);
         _mSensorManager.unregisterListener(_proximity_event);
         _mSensorManager.unregisterListener(_light_event);
-        super.onStop();
     }
-    
+
     class LightEvent implements SensorEventListener {
 
 		@Override
-		public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		}
+		public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
 		@Override
 		public void onSensorChanged(SensorEvent event) {
@@ -107,9 +107,7 @@ public class Sensor_ltmActivity extends Activity  {
     class ProximityEvent implements SensorEventListener {
 
 		@Override
-		public void onAccuracyChanged(Sensor sensor, int accuracy) {
-			//...
-		}
+		public void onAccuracyChanged(Sensor sensor, int accuracy) { }
 
 		@Override
 		public void onSensorChanged(SensorEvent event) {
