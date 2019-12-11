@@ -14,7 +14,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class Sensor_ltmActivity extends Activity  {
-
 	private SensorManager _mSensorManager;
 	private Sensor _mAccelerometer;
 	private Sensor _mOrientation;
@@ -82,7 +81,7 @@ public class Sensor_ltmActivity extends Activity  {
         _mSensorManager.registerListener(_accelero_event, _mAccelerometer, SensorManager.SENSOR_DELAY_UI);
         _mSensorManager.registerListener(_orientation_event, _mOrientation, SensorManager.SENSOR_DELAY_NORMAL);
         _mSensorManager.registerListener(_proximity_event, _mProximity, SensorManager.SENSOR_DELAY_NORMAL);
-        _mSensorManager.registerListener(this._light_event, _mLight, SensorManager.SENSOR_DELAY_FASTEST);
+        _mSensorManager.registerListener(_light_event, _mLight, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
     protected void onStop() {
@@ -100,7 +99,7 @@ public class Sensor_ltmActivity extends Activity  {
 
 		@Override
 		public void onSensorChanged(SensorEvent event) {
-			Log.v("ltm", "Lux = " + new Float(event.values[0]).toString());
+			Log.v("ltm", "Lux = " + Float.valueOf(event.values[0]).toString());
 		}
     }
     
