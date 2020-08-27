@@ -110,7 +110,7 @@ public class Sensor_ltmActivity extends Activity  {
 
 		@Override
 		public void onSensorChanged(SensorEvent event) {
-			//Log.v("ltm", new Float(event.values[0]).toString());
+			Log.v("ltm", "Proximité = " + new Float(event.values[0]).toString());
 			
 		}
     }
