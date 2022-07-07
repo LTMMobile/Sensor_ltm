@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Sensor_ltm.iml" filepath="$PROJECT_DIR$/Sensor_ltm.iml" group="Sensor_ltm" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Sensor_ltm/app" />
+      <module fileurl="file://$PROJECT_DIR$/Sensor_ltm.iml" filepath="$PROJECT_DIR$/Sensor_ltm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Sensor_ltm.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Sensor_ltm.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Sensor_ltm.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Sensor_ltm.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Sensor_ltm.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Sensor_ltm.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Sensor_ltm.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Sensor_ltm.app.unitTest.iml" />
     </modules>
   </component>
 </project>

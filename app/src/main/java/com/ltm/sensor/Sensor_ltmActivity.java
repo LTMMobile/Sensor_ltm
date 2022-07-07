@@ -1,7 +1,6 @@
 package com.ltm.sensor;
 
 import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.hardware.Sensor;
@@ -14,22 +13,22 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class Sensor_ltmActivity extends Activity  {
-	private SensorManager _mSensorManager;
-	private Sensor _mAccelerometer;
-	private Sensor _mOrientation;
-	private Sensor _mProximity;
-	private Sensor _mLight;
+	private SensorManager _mSensorManager = null;
+	private Sensor _mAccelerometer = null;
+	private Sensor _mOrientation = null;
+	private Sensor _mProximity = null;
+	private Sensor _mLight = null;
 	
-	private AccelerometerEvent _accelero_event = new AccelerometerEvent();
-	private OrientationEvent _orientation_event = new OrientationEvent();
-	private ProximityEvent _proximity_event = new ProximityEvent();
-	private LightEvent _light_event = new LightEvent();
+	private final AccelerometerEvent _accelero_event = new AccelerometerEvent();
+	private final OrientationEvent _orientation_event = new OrientationEvent();
+	private final ProximityEvent _proximity_event = new ProximityEvent();
+	private final LightEvent _light_event = new LightEvent();
 	
-	private TextView mTimestamp;
-	private TextView mAccuracy;
-	private TextView mSensorX; 
-	private TextView mSensorY; 
-	private TextView mSensorZ; 
+	private TextView mTimestamp = null;
+	private TextView mAccuracy = null;
+	private TextView mSensorX = null;
+	private TextView mSensorY = null;
+	private TextView mSensorZ = null;
 	private SeekBar _seek_x, _seek_y, _seek_z;
 	private SeekBar _seek_or_x, _seek_or_y, _seek_or_z;
 	
@@ -44,9 +43,7 @@ public class Sensor_ltmActivity extends Activity  {
 
 		// 2.
         _mAccelerometer = _mSensorManager.getDefaultSensor( Sensor.TYPE_ACCELEROMETER );
-        //_mPressure = _mSensorManager.getDefaultSensor( Sensor.TYPE_PRESSURE );
-        //mMagneticField = mSensorManager.getDefaultSensor( Sensor.TYPE_MAGNETIC_FIELD );
-        _mOrientation = _mSensorManager.getDefaultSensor( Sensor.TYPE_ORIENTATION );
+		_mOrientation = _mSensorManager.getDefaultSensor( Sensor.TYPE_ORIENTATION );
         _mProximity = _mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         _mLight = _mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
@@ -92,7 +89,7 @@ public class Sensor_ltmActivity extends Activity  {
         _mSensorManager.unregisterListener(_light_event);
     }
 
-    class LightEvent implements SensorEventListener {
+    static class LightEvent implements SensorEventListener {
 
 		@Override
 		public void onAccuracyChanged(Sensor sensor, int accuracy) {}
@@ -103,14 +100,14 @@ public class Sensor_ltmActivity extends Activity  {
 		}
     }
     
-    class ProximityEvent implements SensorEventListener {
+    static class ProximityEvent implements SensorEventListener {
 
 		@Override
 		public void onAccuracyChanged(Sensor sensor, int accuracy) { }
 
 		@Override
 		public void onSensorChanged(SensorEvent event) {
-			Log.v("ltm", "Proximité = " + new Float(event.values[0]).toString());
+			Log.v("ltm", "Proximité = " + Float.valueOf(event.values[0]).toString());
 			
 		}
     }
@@ -119,7 +116,7 @@ public class Sensor_ltmActivity extends Activity  {
 		@SuppressLint("UseValueOf")
 		@Override
 		public void onAccuracyChanged(Sensor arg0, int accuracy ) {
-			mAccuracy.setText( new Integer(accuracy).toString() );
+			mAccuracy.setText( Integer.toString(accuracy) );
 		}
 
 		private int _cpt = 0;
@@ -128,29 +125,27 @@ public class Sensor_ltmActivity extends Activity  {
 		@Override
 		public void onSensorChanged(SensorEvent event) {
 			
-			if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){	
-				
+			if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
 				_cpt++;
 				if( _cpt<10 ) {
 					return;
 				}else
 					_cpt=0;
 				
-				//Log.v("LTM", "AccelerometerEvent");
-				mTimestamp.setText( new Long(event.timestamp).toString() );
-				mAccuracy.setText( new Integer(event.accuracy).toString() );
-				
+				mTimestamp.setText( Long.toString(event.timestamp) );
+				mAccuracy.setText( Integer.toString(event.accuracy) );
+
 				float x = event.values[0];
-				mSensorX.setText( new Float(x).toString() );
-				_seek_x.setProgress( new Float(x*10.0).intValue() );
+				mSensorX.setText( Float.toString(x) );
+				_seek_x.setProgress(new Float(x*10.0).intValue());
 				
 				float y = event.values[1];
-				mSensorY.setText( new Float(y).toString() );
+				mSensorY.setText( Float.toString(y) );
 				int i = new Float(y*10.0).intValue();
 				_seek_y.setProgress( i );
 				
 				float z = event.values[2];
-				mSensorZ.setText( new Float(z).toString() );
+				mSensorZ.setText( Float.toString(z) );
 				i = new Float(z*10.0).intValue();
 				_seek_z.setProgress(i);
 			}
@@ -160,30 +155,23 @@ public class Sensor_ltmActivity extends Activity  {
     class OrientationEvent implements SensorEventListener {
 		@Override
 		public void onAccuracyChanged(Sensor arg0, int accuracy ) {
-			mAccuracy.setText( new Integer(accuracy).toString() );
+			mAccuracy.setText( Integer.valueOf(accuracy).toString() );
 		}
 
 		//comment
 		@Override
 		public void onSensorChanged(SensorEvent event) {
 			if ( event.sensor.getType() == Sensor.TYPE_ORIENTATION ){		
-				//Log.v("LTM", "OrientationEvent");
-				
+
 				float x = event.values[0];
-				//mSensorX.setText( new Float(x).toString() );
-				//Log.v("LTM", "Azimuth = " + new Float(x).intValue());
 				_seek_or_x.setProgress( new Float(x).intValue() );
 				
 				float y = event.values[1];
-				//mSensorY.setText( new Float(y).toString() );
 				int i = new Float(y).intValue();
-				//Log.v("LTM", "Pitch = " + new Float(y).intValue());
 				_seek_or_y.setProgress( i );
 				
 				float z = event.values[2];
-				//mSensorZ.setText( new Float(z).toString() );
 				i = new Float(z).intValue();
-				//Log.v("LTM", "Roll = " + new Float(z).intValue());
 				_seek_or_z.setProgress(i);
 			}
 		}
