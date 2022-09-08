@@ -116,7 +116,7 @@ public class Sensor_ltmActivity extends Activity  {
 		@SuppressLint("UseValueOf")
 		@Override
 		public void onAccuracyChanged(Sensor arg0, int accuracy ) {
-			mAccuracy.setText( Integer.toString(accuracy) );
+			mAccuracy.setText(Integer.toString(accuracy));
 		}
 
 		private int _cpt = 0;
@@ -132,8 +132,8 @@ public class Sensor_ltmActivity extends Activity  {
 				}else
 					_cpt=0;
 				
-				mTimestamp.setText( Long.toString(event.timestamp) );
-				mAccuracy.setText( Integer.toString(event.accuracy) );
+				mTimestamp.setText(Long.toString(event.timestamp));
+				mAccuracy.setText(Integer.toString(event.accuracy));
 
 				float x = event.values[0];
 				mSensorX.setText( Float.toString(x) );

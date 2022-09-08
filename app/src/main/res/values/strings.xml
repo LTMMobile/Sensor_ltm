@@ -8,5 +8,6 @@
     <string name="sensorx">SensorX</string>
     <string name="sensory">SensorY</string>
     <string name="sensorz">SensorZ</string>
+    <string name="orientation">Orientation</string>
 
 </resources>
